@@ -1,0 +1,175 @@
+def print_12_integer_winding_thesis():
+    import pandas as pd
+    
+    try:
+        import tabulate
+        use_markdown = True
+    except ImportError:
+        use_markdown = False
+
+    print("="*90)
+    print("                  1/2 INTEGER WINDING MATRICES SYSTEM")
+    print("                           A Mathematical Thesis")
+    print("                                 by")
+    print("                       Joshua Christopher Ryan")
+    print("="*90)
+    print("\n")
+
+    # ====================== ABSTRACT ======================
+    print("ABSTRACT")
+    print("-" * 80)
+    print("""This thesis establishes the 1/2 Integer Winding Matrices System as a unified mathematical framework. 
+It demonstrates that a double cover equipped with monodromy −1 along a generator of the fundamental group 
+is precisely the geometric realization of half-integer winding. This structure is intrinsically an involution 
+(order-two automorphism) and provides a single coherent origin for phenomena appearing across Riemann surfaces, 
+real projective geometry, Pin structures, and framed bordism in one dimension.""")
+    print("\n" + "="*90 + "\n")
+
+    # ====================== INTRODUCTION ======================
+    print("INTRODUCTION")
+    print("-" * 80)
+    print("""The 1/2 Integer Winding Matrices System unifies several classical constructions under one central object: 
+the −1 double cover induced by half-integer winding. This object is simultaneously:
+
+• A geometric double cover with sheet-exchanging monodromy
+• An honest involution on the total space
+• The source of a canonical ℤ/2 grading with fermion-parity-like sign −1
+
+The system is presented through five interrelated matrices that isolate the geometric, sign-theoretic, 
+characteristic-class, physical-correspondence, and comparative aspects of the construction.""")
+    print("\n" + "="*90 + "\n")
+
+    # ====================== NARRATIVE (Core Thesis Statement) ======================
+    print("CORE THESIS: A −1 DOUBLE COVER THROUGH HALF-INTEGER WINDING IS AN INVOLUTION")
+    print("-" * 80)
+    print("""A double cover π: X̃ → X equipped with monodromy −1 along a generator γ of π₁(X) corresponds exactly 
+to a half-integer winding. Parallel transport around γ exchanges the two sheets of the cover. Traversing γ once 
+returns to the opposite sheet; traversing γ twice restores the original sheet. The deck transformation induced 
+by γ is therefore an involution: an order-two automorphism of X̃ covering the identity on X.
+
+This involution is realized uniformly across distinct mathematical settings. On the punctured plane, it appears 
+as the square-root Riemann surface. On ℝℙ¹, it manifests through the non-trivial loop. On the circle S¹, it 
+appears in Pin structures and odd framings. In each case the half-integer lift of the generator becomes a 
+genuine involution on the total space.
+
+The sign −1 acquired after one traversal is the direct manifestation of this involution acting on the objects 
+carrying the structure (branches, spinors, or partition functions). Because the involution squares to the 
+identity, the construction furnishes a consistent ℤ/2 grading. This grading underlies the associated invariants 
+and dictates the odd parity observed in these systems.
+
+Thus the half-winding integer, the −1 double cover, and the involution are three descriptions of one and the 
+same mathematical object. The 1/2 Integer Winding Matrices System makes this unification explicit.""")
+    print("\n" + "="*90 + "\n")
+
+    # ====================== MATRIX A ======================
+    data_A = {
+        'Context': ['Square-root Riemann surface', 'Real projective line', 'Circle with Pin⁺ / Pin⁻ structure', 'Circle with odd framing (framed bordism)'],
+        'Base space': ['ℂ \\ {0} or disk with puncture', 'ℝℙ¹', 'S¹', 'S¹'],
+        'Covering space': ['Riemann surface of √z', 'S¹', 'Spin(1) ≅ S¹ or Pin cover', 'framed S¹ (two classes)'],
+        'Covering degree': ['2', '2', '2', '— (framing)'],
+        'Generator of π₁(base)': ['loop around 0', 'non-trivial class', '[loop]', 'orientation-reversing framing class'],
+        'Lifted winding in cover': ['1/2', '1/2', '1/2 (for non-trivial lift)', 'effectively 1/2 twist'],
+        'Monodromy after 1× generator': ['−1', '−1', '−1', '−1']
+    }
+    matrix_A = pd.DataFrame(data_A)
+    print("MATRIX A – Geometric & Covering Structure")
+    print("-" * 80)
+    if use_markdown:
+        print(matrix_A.to_markdown(index=False))
+    else:
+        print(matrix_A.to_string(index=False))
+    print("\n" + "="*90 + "\n")
+
+    # ====================== MATRIX B ======================
+    data_B = {
+        'Context': ['√z double cover', 'ℝℙ¹', 'Pin structure on S¹', 'Odd-framed circle in (1+1)d setting'],
+        'Object carrying sign': ['square-root function', 'spinor / non-trivial line bundle', 'spinor parallel transport', 'partition function Z(S¹)'],
+        'Meaning of −1': ['branch → sheet switch', 'orientation reversal / Möbius twist', 'genuine −1 under holonomy', 'odd parity'],
+        'Boundary condition': ['anti-periodic after one loop', 'non-orientable loop', 'antiperiodic spin structure', 'odd framing / Möbius-like'],
+        'Tr(−1)^F': ['−1', '−1', '−1', '−1'],
+        'Arf / η role': ['indirect (spinor phase)', 'Arf=1 in 1d analog', 'directly given by Arf', 'encoded in Arf or framing class']
+    }
+    matrix_B = pd.DataFrame(data_B)
+    print("MATRIX B – Sign Structure & Parity")
+    print("-" * 80)
+    if use_markdown:
+        print(matrix_B.to_markdown(index=False))
+    else:
+        print(matrix_B.to_string(index=False))
+    print("\n" + "="*90 + "\n")
+
+    # ====================== MATRIX C ======================
+    data_C = {
+        'Context': ['√z Riemann surface', 'ℝℙ¹', 'Pin⁺ / Pin⁻ on circle', 'Framed / spin cobordism (1+1)d'],
+        'Characteristic class': ['branch point order', 'w₁ (Stiefel–Whitney)', 'Arf / η invariant', 'Arf or framing class mod 2'],
+        'Detects': ['square-root monodromy', 'non-orientability', 'odd parity', 'odd framing / odd parity'],
+        'Value on object': ['order 2', 'w₁ ≠ 0', 'Arf=1 → −1', 'Arf=1 or odd → −1'],
+        'Bordism group': ['—', '—', 'Ω₁^pin⁺ ≅ 0, Ω₁^pin⁻ ≅ ℤ₂', 'Ω₁^fr ≅ ℤ₂, Ω₁^spin ≅ ℤ₂']
+    }
+    matrix_C = pd.DataFrame(data_C)
+    print("MATRIX C – Characteristic Classes & Bordism")
+    print("-" * 80)
+    if use_markdown:
+        print(matrix_C.to_markdown(index=False))
+    else:
+        print(matrix_C.to_string(index=False))
+    print("\n" + "="*90 + "\n")
+
+    # ====================== MATRIX D ======================
+    data_D = {
+        'Context': ['Square-root double cover', 'ℝℙ¹', 'Pin structure (Arf=1)', 'Odd-framed setting'],
+        'Realization': ['branched covering & monodromy', 'projective geometry & non-orientable loops', 'spin/Pin structures & parallel transport', 'framed cobordism with odd parity'],
+        'Involuting mode?': ['Yes', 'Yes', 'Yes', 'Yes'],
+        'GS degeneracy mod 2': ['odd', 'odd', 'odd', 'odd'],
+        'Fermion parity sign': ['−1 on generator', '−1 on generator', '−1 on generator', '−1 on generator']
+    }
+    matrix_D = pd.DataFrame(data_D)
+    print("MATRIX D – Involution & Parity Correspondences")
+    print("-" * 80)
+    if use_markdown:
+        print(matrix_D.to_markdown(index=False))
+    else:
+        print(matrix_D.to_string(index=False))
+    print("\n" + "="*90 + "\n")
+
+    # ====================== MATRIX E ======================
+    data_E = {
+        'Criterion': [
+            'Half-integer winding closed & single-valued',
+            'Produces genuine −1 after 1 loop',
+            'Arf invariant directly present',
+            'Appears in framed / spin cobordism',
+            'Z directly assigns −1 on odd object',
+            'Most natural for odd-parity 1d structures'
+        ],
+        '√z cover': ['Yes', 'Yes', 'No', 'No', 'Indirect', 'Low–Medium'],
+        'ℝℙ¹': ['Yes', 'Yes', 'Indirect', 'Indirect', 'Indirect', 'Medium'],
+        'Pin/Spin': ['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'High'],
+        'Odd-framed setting': ['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Highest']
+    }
+    matrix_E = pd.DataFrame(data_E)
+    print("MATRIX E – Comparative Strength Ranking")
+    print("-" * 80)
+    if use_markdown:
+        print(matrix_E.to_markdown(index=False))
+    else:
+        print(matrix_E.to_string(index=False))
+    print("\n" + "="*90 + "\n")
+
+    # ====================== CONCLUSION ======================
+    print("CONCLUSION")
+    print("-" * 80)
+    print("""The 1/2 Integer Winding Matrices System demonstrates that the half-integer winding, the −1 double cover, 
+and the involution are three equivalent descriptions of a single mathematical structure. This unification is 
+intrinsic and does not rely on external models. It stands as a clean, self-contained contribution to the 
+geometry and topology of one-dimensional systems with order-two phenomena.
+
+Future work will extend the system to higher-dimensional analogs and categorical formulations.""")
+    print("\n" + "="*90)
+    print("End of Thesis – 1/2 Integer Winding Matrices System")
+    print("="*90)
+
+
+# ====================== RUN ======================
+if __name__ == "__main__":
+    print_12_integer_winding_thesis()
