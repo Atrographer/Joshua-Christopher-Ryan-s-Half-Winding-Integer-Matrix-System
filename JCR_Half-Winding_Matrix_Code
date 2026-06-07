@@ -1,0 +1,185 @@
+# ========================================================
+# Joshua Christopher Ryan
+# 1/2 Integer Winding Matrices System
+# ========================================================
+
+def print_matrices_only():
+    import pandas as pd
+    
+    # Try to import tabulate for better markdown output
+    try:
+        import tabulate
+        use_markdown = True
+    except ImportError:
+        use_markdown = False
+    
+    # ====================== MATRIX A ======================
+    # Matrix A – Fundamental Geometric & Covering Structure
+    data_A = {
+        'Context': [
+            'Square-root Riemann surface', 
+            'Real projective line', 
+            'Circle with Pin⁺ / Pin⁻ structure', 
+            'Circle with odd framing (framed bordism)'
+        ],
+        'Base space': [
+            'ℂ \\ {0} or disk with puncture', 
+            'ℝℙ¹', 
+            'S¹', 
+            'S¹'
+        ],
+        'Covering space': [
+            'Riemann surface of √z', 
+            'S¹', 
+            'Spin(1) ≅ S¹ or Pin cover', 
+            'framed S¹ (two classes)'
+        ],
+        'Covering degree': ['2', '2', '2', '— (framing)'],
+        'Generator of π₁(base)': [
+            'loop around 0', 
+            'non-trivial class', 
+            '[loop]', 
+            'orientation-reversing framing class'
+        ],
+        'Lifted winding in cover': [
+            '1/2', 
+            '1/2', 
+            '1/2 (for non-trivial lift)', 
+            'effectively 1/2 twist'
+        ],
+        'Monodromy after 1× generator': ['−1', '−1', '−1', '−1']
+    }
+    matrix_A = pd.DataFrame(data_A)
+    
+    # ====================== MATRIX B ======================
+    # Matrix B – Fermion Parity & Sign Structure
+    data_B = {
+        'Context': [
+            '√z double cover', 
+            'ℝℙ¹', 
+            'Pin structure on S¹', 
+            'Odd-framed circle in (1+1)d TFT'
+        ],
+        'Object carrying sign': [
+            'square-root function', 
+            'spinor / non-trivial line bundle', 
+            'spinor parallel transport', 
+            'partition function Z(S¹)'
+        ],
+        'Meaning of −1': [
+            'branch → sheet switch', 
+            'orientation reversal / Möbius twist', 
+            'genuine −1 under holonomy', 
+            'odd fermion number parity'
+        ],
+        'Boundary condition': [
+            'anti-periodic after one loop', 
+            'non-orientable loop', 
+            'antiperiodic spin structure', 
+            'odd framing / Möbius-like'
+        ],
+        'Tr(−1)^F': ['−1', '−1', '−1', '−1'],
+        'Arf / η role': [
+            'indirect (spinor phase)', 
+            'Arf=1 in 1d analog', 
+            'directly given by Arf', 
+            'encoded in Arf or framing class'
+        ]
+    }
+    matrix_B = pd.DataFrame(data_B)
+    
+    # ====================== MATRIX C ======================
+    # Matrix C – Characteristic Classes & Bordism
+    data_C = {
+        'Context': [
+            '√z Riemann surface', 
+            'ℝℙ¹', 
+            'Pin⁺ / Pin⁻ on circle', 
+            'Framed / spin cobordism (1+1)d'
+        ],
+        'Characteristic class': [
+            'branch point order', 
+            'w₁ (Stiefel–Whitney)', 
+            'Arf / η invariant', 
+            'Arf or framing class mod 2'
+        ],
+        'Detects': [
+            'square-root monodromy', 
+            'non-orientability', 
+            'odd fermion parity', 
+            'odd framing / odd fermion parity'
+        ],
+        'Value on object': [
+            'order 2', 
+            'w₁ ≠ 0', 
+            'Arf=1 → −1', 
+            'Arf=1 or odd → −1'
+        ],
+        'Bordism group': [
+            '—', 
+            '—', 
+            'Ω₁^pin⁺ ≅ 0, Ω₁^pin⁻ ≅ ℤ₂', 
+            'Ω₁^fr ≅ ℤ₂, Ω₁^spin ≅ ℤ₂'
+        ]
+    }
+    matrix_C = pd.DataFrame(data_C)
+    
+    # ====================== MATRIX D ======================
+    # Matrix D – Physical Correspondences
+    data_D = {
+        'Context': [
+            'Square-root double cover', 
+            'ℝℙ¹', 
+            'Pin structure (Arf=1)', 
+            'Odd-framed TFT circle'
+        ],
+        'Realization': [
+            'branched covering & monodromy', 
+            'projective geometry & non-orientable loops', 
+            'spin/Pin structures & parallel transport', 
+            'framed cobordism with odd parity'
+        ],
+        'Majorana-like mode?': ['Yes', 'Yes', 'Yes', 'Yes'],
+        'GS degeneracy mod 2': ['odd', 'odd', 'odd', 'odd'],
+        'Fermion parity sign': ['−1 on generator', '−1 on generator', '−1 on generator', '−1 on generator']
+    }
+    matrix_D = pd.DataFrame(data_D)
+    
+    # ====================== MATRIX E ======================
+    # Matrix E – Summary (Relevance)
+    data_E = {
+        'Criterion': [
+            'Half-integer winding closed & single-valued',
+            'Produces genuine −1 after 1 loop',
+            'Arf invariant directly present',
+            'Appears in framed / spin cobordism',
+            'Z directly assigns −1 on odd object',
+            'Most natural for odd-parity (1+1)d structures'
+        ],
+        '√z cover': ['Yes', 'Yes', 'No', 'No', 'Indirect', 'Low–Medium'],
+        'ℝℙ¹': ['Yes', 'Yes', 'Indirect', 'Indirect', 'Indirect', 'Medium'],
+        'Pin/Spin': ['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'High'],
+        'Odd-framed TFT': ['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Highest']
+    }
+    matrix_E = pd.DataFrame(data_E)
+    
+    # ====================== PRINT FUNCTION ======================
+    def print_matrix(name, df):
+        print(f"## {name}\n")
+        if use_markdown:
+            print(df.to_markdown(index=False))
+        else:
+            print(df.to_string(index=False))
+        print("\n" + "="*80 + "\n")
+    
+    # Print all matrices
+    print_matrix("Matrix A – Geometric & Covering Structure", matrix_A)
+    print_matrix("Matrix B – Fermion Parity & Sign Structure", matrix_B)
+    print_matrix("Matrix C – Characteristic Classes & Bordism", matrix_C)
+    print_matrix("Matrix D – Physical Correspondences", matrix_D)
+    print_matrix("Matrix E – Summary Ranking", matrix_E)
+
+
+# ====================== RUN ======================
+if __name__ == "__main__":
+    print_matrices_only()
