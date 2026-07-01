@@ -38,7 +38,7 @@ def print_full_thesis():
     print("## Section 4: Physical Correspondences and Majorana-like Modes (Matrix D)")
     print("Majorana-like (defined by Joshua Christopher Ryan):")
     print("A topologically enforced, self-conjugate fermionic mode whose existence and odd parity are dictated by an underlying 1/2-integer winding.")
-    print("The qualifier “like” acknowledges that the systems may not always involve physical relativistic Majorana fermions, but they share the same algebraic and topological footprint as Kitaev’s Majorana zero modes:")
+    print("The qualifier “like” acknowledges that the systems may not always involve physical relativistic Majorana fermions.")
     print("• Particle-hole symmetry (or equivalent)")
     print("• Real representation of the Clifford algebra")
     print("• Odd parity under 2π rotation or loop traversal")
